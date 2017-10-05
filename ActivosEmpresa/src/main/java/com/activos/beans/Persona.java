@@ -1,4 +1,4 @@
-package com.cloudsrcsoft.beans;
+package com.activos.beans;
 
 public class Persona {
 

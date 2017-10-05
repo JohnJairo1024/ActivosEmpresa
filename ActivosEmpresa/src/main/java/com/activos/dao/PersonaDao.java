@@ -1,4 +1,4 @@
-package com.cloudsrcsoft.dao;
+package com.activos.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,8 +8,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.cloudsrcsoft.beans.Emp;
-import com.cloudsrcsoft.beans.Persona;
+import com.activos.beans.Emp;
+import com.activos.beans.Persona;
 
 public class PersonaDao {
 

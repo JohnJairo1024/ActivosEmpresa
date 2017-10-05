@@ -24,6 +24,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.cloudsrcsoft.controller" />
+	<context:component-scan base-package="com.activos.controller" />
 
 </beans:beans>

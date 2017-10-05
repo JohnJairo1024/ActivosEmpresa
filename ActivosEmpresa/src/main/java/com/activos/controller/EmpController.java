@@ -1,61 +1,64 @@
-package com.cloudsrcsoft.controller;
+/*package com.cloudsrcsoft.springmvc;*/
+
+package com.activos.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cloudsrcsoft.beans.Persona;
-import com.cloudsrcsoft.dao.PersonaDao;
+import com.activos.beans.Emp;
+import com.activos.dao.EmpDao;
 
-public class PersonaController {
-
+@Controller
+public class EmpController {
 	@Autowired
-	PersonaDao dao;
+	EmpDao dao;
 
-	@RequestMapping("/personaform")
+	@RequestMapping("/empform")
 	public ModelAndView showform() {
 		/*
 		 * ModelAndView Representa un modelo (lógica de datos) y vista
 		 * (interface de usuario, nuestros jsp) El objeto que le inyectamos es
-		 * "personaform" el cual lo pasamos en la vista index.jsp como referencia
+		 * "empform" el cual lo pasamos en la vista index.jsp como referencia
 		 * "empform"
 		 */
-		return new ModelAndView("personaform", "command", new Persona());
+		return new ModelAndView("empform", "command", new Emp());
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView guardar(@ModelAttribute("persona") Persona persona) {
-		dao.save(persona);
-		return new ModelAndView("redirect:/indexprueba");
+	public ModelAndView guardar(@ModelAttribute("emp") Emp emp) {
+		dao.save(emp);
+		return new ModelAndView("redirect:/index");
 	}
 
-	@RequestMapping("/indexprueba")
-	public ModelAndView listaPersona() {
-		List<Persona> list = dao.obtenerPersonas();
-		return new ModelAndView("indexprueba", "list", list);
+	@RequestMapping("/index")
+	public ModelAndView listaEmpleado() {
+		List<Emp> list = dao.getEmployees();
+		return new ModelAndView("index", "list", list);
 	}
 
 	@RequestMapping(value = "/editemp/{id}")
 	public ModelAndView editar(@PathVariable int id) {
-		Persona persona = dao.getEmpById(id);
-		return new ModelAndView("empeditform", "command", persona);
+		Emp emp = dao.getEmpById(id);
+		return new ModelAndView("empeditform", "command", emp);
 	}
 
 	@RequestMapping(value = "/editsave", method = RequestMethod.POST)
-	public ModelAndView editarGuardado(@ModelAttribute("persona") Persona persona) {
-		dao.update(persona);
-		return new ModelAndView("redirect:/indexprueba");
+	public ModelAndView editarGuardado(@ModelAttribute("emp") Emp emp) {
+		dao.update(emp);
+		return new ModelAndView("redirect:/index");
 	}
 
 	@RequestMapping(value = "/deleteemp/{id}", method = RequestMethod.GET)
 	public ModelAndView eliminar(@PathVariable int id) {
 		dao.delete(id);
-		return new ModelAndView("redirect:/indexprueba");
+		return new ModelAndView("redirect:/index");
 	}
 
 }
