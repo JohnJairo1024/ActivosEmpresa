@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Contexto de DispatcherServlet: define el procesamiento de solicitud 
+		de este servlet infraestructura -->
+
+	<!-- Habilita el modelo de programación de Spring MVC @Controller -->
+	<annotation-driven />
+
+	<!-- Gestiona las solicitudes HTTP GET para / resources / ** sirviendo eficazmente 
+		up de recursos estáticos en el directorio $ {webappRoot} / resources -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resuelve las vistas seleccionadas para la representación por @Controllers 
+		a los recursos .jsp en el directorio / WEB-INF / views -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<context:component-scan base-package="com.cloudsrcsoft.controller" />
+
+</beans:beans>
