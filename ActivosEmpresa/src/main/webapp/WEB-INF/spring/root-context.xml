@@ -22,7 +22,7 @@
 <!-- 		<property name="template" ref="jt"></property> -->
 <!-- 	</bean> -->
 	
-	<bean id="dao" class="com.cloudsrcsoft.dao.EmpDao">
+	<bean id="dao" class="com.activos.dao.EmpDao">
 		<property name="template" ref="jt"></property>
 	</bean>
 	
